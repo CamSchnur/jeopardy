@@ -38,9 +38,22 @@ defmodule Jeopardy.JArchive do
     end
   end
 
-  def choose_game(opts \\ []) do
-    _difficulty_filter = Keyword.get(opts, :difficulty, :any)
-    _decade_filter = Keyword.get(opts, :decade, :any)
+  def get_game_index(id) do
+    Repo.get_by(GameIndex, game_id: id)
+  end
+
+  def choose_game(filters \\ []) do
+    q = GameIndex
+    q = if filters[:decades], do: where(q, [g], g.decade in ^filters[:decades]), else: q
+    q = if filters[:difficulty], do: where(q, [g], g.difficulty in ^filters[:difficulty]), else: q
+
+    game =
+      q
+      |> order_by(fragment("RANDOM()"))
+      |> limit(1)
+      |> Repo.one()
+
+    if game, do: load_game(game.game_id), else: {:error, "No games exist"}
   end
 
   def reset_archive do
