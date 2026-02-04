@@ -684,8 +684,16 @@ defmodule JeopardyWeb.CoreComponents do
 
       iex> sanitize_name_for_id("John")
       "John"
+
+      iex> sanitize_name_for_id("  spaces  around  ")
+      "spaces_around"
+
+      iex> sanitize_name_for_id("O'Brien")
+      "O'Brien"
   """
   def sanitize_name_for_id(name) when is_binary(name) do
-    String.replace(name, ~r/\s+/, "_")
+    name
+    |> String.replace(~r/\s+/, "_")
+    |> String.trim("_")
   end
 end

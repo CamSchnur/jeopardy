@@ -38,7 +38,7 @@ window.addEventListener("phx:page-loading-stop", _info => topbar.hide())
 
 // Helper function to sanitize player names for DOM IDs (matches server-side logic)
 function sanitizeNameForId(name) {
-  return name.replace(/\s+/g, "_");
+  return name.replace(/\s+/g, "_").replace(/^_+|_+$/g, "");
 }
 
 window.addEventListener(`phx:score-updated`, (e) => {
