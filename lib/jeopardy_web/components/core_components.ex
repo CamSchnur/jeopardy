@@ -673,4 +673,19 @@ defmodule JeopardyWeb.CoreComponents do
       }
     )
   end
+
+  @doc """
+  Sanitizes a player name for use as a DOM ID by replacing spaces and special characters with underscores.
+
+  ## Examples
+
+      iex> sanitize_name_for_id("clam the pizookie man")
+      "clam_the_pizookie_man"
+
+      iex> sanitize_name_for_id("John")
+      "John"
+  """
+  def sanitize_name_for_id(name) when is_binary(name) do
+    String.replace(name, ~r/\s+/, "_")
+  end
 end
