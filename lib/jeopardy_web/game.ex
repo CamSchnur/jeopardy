@@ -31,6 +31,12 @@ defmodule JeopardyWeb.Game do
     |> Map.put(:board_control, game.board.control)
     |> Map.put(:categories, game.board.categories)
     |> Map.put(:board, board)
-    |> Map.put(:air_date, game.jarchive_game.air_date)
+    |> then(fn g ->
+      if game.jarchive_game do
+        Map.put(g, :air_date, game.jarchive_game.air_date)
+      else
+        g
+      end
+    end)
   end
 end
