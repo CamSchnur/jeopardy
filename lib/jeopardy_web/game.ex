@@ -12,6 +12,7 @@ defmodule JeopardyWeb.Game do
     field :clue, Clue.t()
     field :buzzer, String.t()
     field :board_control, String.t()
+    field :air_date, Date.t()
   end
 
   def new(%Jeopardy.Game{} = game) do
@@ -30,5 +31,6 @@ defmodule JeopardyWeb.Game do
     |> Map.put(:board_control, game.board.control)
     |> Map.put(:categories, game.board.categories)
     |> Map.put(:board, board)
+    |> Map.put(:air_date, game.jarchive_game.air_date)
   end
 end

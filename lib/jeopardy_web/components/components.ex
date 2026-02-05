@@ -11,6 +11,7 @@ defmodule JeopardyWeb.Components do
   slot :timer
   attr :contestants, :map, required: true
   attr :buzzer, :string, default: nil
+  attr :air_date, :any, default: nil
   def tv(assigns)
 
   slot :inner_block, required: true

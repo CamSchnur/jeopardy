@@ -17,7 +17,7 @@ defmodule JeopardyWeb.Components.Tv.SelectingClue do
   def render(assigns) do
     ~H"""
     <div>
-      <.tv contestants={@game.contestants}>
+      <.tv contestants={@game.contestants} air_date={@game.air_date}>
         <.board categories={@game.categories} clues={@game.board} />
       </.tv>
     </div>
