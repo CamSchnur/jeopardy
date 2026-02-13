@@ -48,48 +48,53 @@ defmodule JeopardyWeb.Components.Trebek.TrebekAdminPanel do
   end
 
   def show_confirm_remove(js \\ %JS{}, name) do
+    sanitized_name = JeopardyWeb.CoreComponents.sanitize_name_for_id(name)
     js
     |> JS.hide(to: "#trebek-admin-panel .actions", transition: @fade_out)
     |> JS.show(
-      to: "#trebek-admin-panel [data-contestant-name='#{name}'] .confirm-remove",
+      to: "#trebek-admin-panel [data-contestant-name='#{sanitized_name}'] .confirm-remove",
       transition: {"transition-all ease-out", "translate-x-full", "translate-x-0"},
       display: "flex"
     )
   end
 
   def cancel_remove(js \\ %JS{}, name) do
+    sanitized_name = JeopardyWeb.CoreComponents.sanitize_name_for_id(name)
     js
     |> JS.show(to: "#trebek-admin-panel .actions", transition: @fade_in)
     |> JS.hide(
-      to: "#trebek-admin-panel [data-contestant-name='#{name}'] .confirm-remove",
+      to: "#trebek-admin-panel [data-contestant-name='#{sanitized_name}'] .confirm-remove",
       transition: {"transition-all ease-out", "translate-x-0", "translate-x-full"}
     )
   end
 
   def confirm_remove(js \\ %JS{}, name) do
+    sanitized_name = JeopardyWeb.CoreComponents.sanitize_name_for_id(name)
     js
     |> JS.show(to: "#trebek-admin-panel .actions", transition: @fade_in)
     |> JS.hide(
-      to: "#trebek-admin-panel [data-contestant-name='#{name}'] .confirm-remove",
+      to: "#trebek-admin-panel [data-contestant-name='#{sanitized_name}'] .confirm-remove",
       transition: {"transition-all ease-out", "translate-x-0", "translate-x-full"}
     )
     |> JS.push("remove-contestant", value: %{player_name: name})
   end
 
   def show_edit_score(js \\ %JS{}, name) do
+    sanitized_name = JeopardyWeb.CoreComponents.sanitize_name_for_id(name)
     js
-    |> JS.transition(@fade_out, to: "#trebek-admin-panel [data-contestant-name='#{name}'] > .row")
+    |> JS.transition(@fade_out, to: "#trebek-admin-panel [data-contestant-name='#{sanitized_name}'] > .row")
     |> JS.show(
-      to: "#trebek-admin-panel [data-contestant-name='#{name}'] .edit-score",
+      to: "#trebek-admin-panel [data-contestant-name='#{sanitized_name}'] .edit-score",
       transition: @fade_in,
       display: "flex"
     )
-    |> JS.focus(to: "#trebek-admin-panel [data-contestant-name='#{name}'] .score-input")
+    |> JS.focus(to: "#trebek-admin-panel [data-contestant-name='#{sanitized_name}'] .score-input")
   end
 
   def hide_edit_score(js \\ %JS{}, name) do
+    sanitized_name = JeopardyWeb.CoreComponents.sanitize_name_for_id(name)
     js
-    |> JS.transition(@fade_in, to: "#trebek-admin-panel [data-contestant-name='#{name}'] > .row")
-    |> JS.hide(to: "#trebek-admin-panel [data-contestant-name='#{name}'] .edit-score", transition: @fade_out)
+    |> JS.transition(@fade_in, to: "#trebek-admin-panel [data-contestant-name='#{sanitized_name}'] > .row")
+    |> JS.hide(to: "#trebek-admin-panel [data-contestant-name='#{sanitized_name}'] .edit-score", transition: @fade_out)
   end
 end

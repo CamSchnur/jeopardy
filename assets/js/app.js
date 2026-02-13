@@ -36,8 +36,13 @@ topbar.config({barColors: {0: "#29d"}, shadowColor: "rgba(0, 0, 0, .3)"})
 window.addEventListener("phx:page-loading-start", _info => topbar.show(300))
 window.addEventListener("phx:page-loading-stop", _info => topbar.hide())
 
+// Helper function to sanitize player names for DOM IDs (matches server-side logic)
+function sanitizeNameForId(name) {
+  return name.replace(/\s+/g, "_").replace(/^_+|_+$/g, "");
+}
+
 window.addEventListener(`phx:score-updated`, (e) => {
-  podium_score_id = `podium-${e.detail.contestant_name.replace(/\s/g, "_")}-score`
+  podium_score_id = `podium-${sanitizeNameForId(e.detail.contestant_name)}-score`
   let el = document.getElementById(podium_score_id)
   if (el) {
     attr = e.detail.correct ? "data-increase-score" : "data-decrease-score";

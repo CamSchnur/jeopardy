@@ -19,7 +19,7 @@
     </div>
 
     <div class="players grid">
-      <div :for={{name, score} <- @contestants} class="relative py-2" data-contestant-name={name}>
+      <div :for={{name, score} <- @contestants} class="relative py-2" data-contestant-name={sanitize_name_for_id(name)}>
         <div class="row flex justify-between">
           <div>
             <span class="mr-2 text-slate-300"><%= name %>:</span>

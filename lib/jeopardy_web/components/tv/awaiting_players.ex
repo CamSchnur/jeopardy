@@ -98,11 +98,12 @@ defmodule JeopardyWeb.Components.Tv.AwaitingPlayers do
   # JS interactions
 
   defp remove_player(name) do
+    sanitized_name = JeopardyWeb.CoreComponents.sanitize_name_for_id(name)
     "remove-player"
     |> JS.push(value: %{player: name})
-    |> hide_modal("remove-modal-#{name}")
+    |> hide_modal("remove-modal-#{sanitized_name}")
     |> JS.hide(
-      to: "#podium-#{name}",
+      to: "#podium-#{sanitized_name}",
       time: 600,
       transition:
         {"transition-all transform ease-out delay-200 duration-[400ms]", "opacity-100 translate-y-0",
