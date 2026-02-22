@@ -28,7 +28,7 @@ config :jeopardy, JeopardyWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :jeopardy, Jeopardy.Mailer, adapter: Swoosh.Adapters.Local
+config :jeopardy, Jeopardy.Mailer, adapter: Swoosh.Adapters.Test
 
 # Configure esbuild (the version is required)
 config :esbuild,
