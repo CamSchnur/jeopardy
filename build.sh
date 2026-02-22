@@ -5,8 +5,8 @@ set -o errexit
 # Initial setup
 mix setup
 mix deps.get --only prod
-mix phx.digest
 MIX_ENV=prod mix compile
+npm install --prefix ./assets
 
 # Compile assets
 # Make sure tailwind and esbuild are installed
