@@ -35,3 +35,7 @@ jeopardy-*.tar
 npm-debug.log
 /assets/node_modules/
 
+*.vsidx
+.vs/jeopardy.slnx/v18/.wsuo
+.vs/ProjectSettings.json
+.vs/slnx.sqlite

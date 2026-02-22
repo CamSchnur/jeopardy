@@ -3,10 +3,11 @@
 set -o errexit
 
 # Initial setup
+npm install --prefix ./assets
 mix setup
 mix deps.get --only prod
 MIX_ENV=prod mix compile
-npm install --prefix ./assets
+
 
 # Compile assets
 # Make sure tailwind and esbuild are installed
