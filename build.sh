@@ -5,6 +5,7 @@ set -o errexit
 # Initial setup
 mix setup
 mix deps.get --only prod
+mix phx.digest
 MIX_ENV=prod mix compile
 
 # Compile assets
