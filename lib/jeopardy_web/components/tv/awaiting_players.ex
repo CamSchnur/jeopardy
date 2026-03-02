@@ -11,8 +11,7 @@ defmodule JeopardyWeb.Components.Tv.AwaitingPlayers do
   def assign_init(socket, game) do
     player_names = game.players |> Map.keys() |> Enum.sort()
     signatures = Map.new(game.players, fn {name, player} -> {name, player.signature} end)
-    assign(socket, players: player_names, original_players: player_names, signatures: signatures),
-    air_date: game.jarchive_game.air_date
+    assign(socket, players: player_names, original_players: player_names, signatures: signatures, air_date: game.jarchive_game.air_date)
   end
 
   def handle_game_server_msg(%PlayerRemoved{name: name}, socket) do
