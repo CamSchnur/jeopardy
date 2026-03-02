@@ -52,6 +52,11 @@ defmodule JeopardyWeb.Components.Tv.AwaitingPlayers do
     {:noreply, socket}
   end
 
+  def handle_event("change-game", _, socket) do
+    Jeopardy.GameServer.action(socket.assigns.code, :load_game, :random)
+    {:noreply, socket}
+  end
+
   # JS interactions
 
   defp remove_player(name) do
