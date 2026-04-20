@@ -63,7 +63,16 @@ defmodule JeopardyWeb.GameLive do
   end
 
   def handle_info(%StatusChanged{to: state}, socket) do
-    {:noreply, assign(socket, state: state)}
+    socket = assign(socket, state: state)
+
+    socket =
+      if state == Jeopardy.FSM.AwaitingDailyDoubleWager && socket.assigns.role == :tv do
+        push_event(socket, "daily-double", %{})
+      else
+        socket
+      end
+
+    {:noreply, socket}
   end
 
   def handle_info(%PlayAgain{}, socket) do

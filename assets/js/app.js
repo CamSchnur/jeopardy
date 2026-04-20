@@ -57,6 +57,17 @@ window.addEventListener(`phx:score-updated`, (e) => {
   }
 })
 
+window.addEventListener("phx:daily-double", () => {
+  try {
+    const audio = new Audio("/audio/daily-double.mp3");
+    audio.play().catch(() => {
+      // Silently fail if autoplay is blocked
+    });
+  } catch (e) {
+    // Silently fail if audio file missing or other error
+  }
+})
+
 // connect if there are any LiveViews on the page
 liveSocket.connect()
 
