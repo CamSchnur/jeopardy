@@ -30,11 +30,11 @@ defmodule JeopardyWeb.Components.Trebek.GradingFinalJeopardyAnswers do
         <div class="flex flex-col gap-2 items-start">
           <label
             :for={{name, answer} <- Enum.shuffle(@contestants)}
-            for={"input-#{name}"}
+            for={"input-#{sanitize_name_for_id(name)}"}
             class="flex gap-2 cursor-pointer"
           >
             <input
-              id={"input-#{name}"}
+              id={"input-#{sanitize_name_for_id(name)}"}
               type="checkbox"
               name="correct-responses[]"
               class="checkbox checkbox-success"

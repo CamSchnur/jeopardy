@@ -18,8 +18,9 @@ defmodule JeopardyWeb.Components.Tv.SelectingTrebek do
   # JS interactions
 
   defp elect_host(name) do
+    sanitized_name = JeopardyWeb.CoreComponents.sanitize_name_for_id(name)
     "elect_host"
     |> JS.push(value: %{player: name})
-    |> hide_modal("remove-modal-#{name}")
+    |> hide_modal("elect-modal-#{sanitized_name}")
   end
 end
