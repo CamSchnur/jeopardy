@@ -1,7 +1,12 @@
-<div class="h-[100dvh] grid grid-rows-[1fr_25px_24%]" style="background: #221e21;">
+<div class="h-[100dvh] grid grid-rows-[1fr_30px_24%]" style="background: #221e21;">
   <div class="relative"><%= render_slot(@inner_block) %></div>
-  <div class="grid items-center h-full px-2">
-    <%= render_slot(@timer) %>
+  <div class="grid items-center h-full px-2 text-[1.5vh] text-slate-400">
+    <div class="flex justify-between items-center w-full">
+      <div><%= render_slot(@timer) %></div>
+      <%= if @air_date do %>
+        <div>Aired: <%= Calendar.strftime(@air_date, "%b %d, %Y") %></div>
+      <% end %>
+    </div>
   </div>
   <div
     class="podiums flex justify-evenly w-screen"
